@@ -78,4 +78,4 @@ def getTasks(request):
             temp = dict(zip(headers, i))
             rets.append(json.dumps(temp))
         
-    return HttpResponse([rets], content_type="application/json")
+    return HttpResponse(rets, content_type="application/json")
