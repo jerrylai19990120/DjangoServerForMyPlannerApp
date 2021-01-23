@@ -79,3 +79,19 @@ def getTasks(request):
             rets.append(json.dumps(temp))
         
     return HttpResponse(rets, content_type="application/json")
+
+@csrf_exempt
+def updateTask(request):
+    data = json.loads(request.body)
+    id = data['id']
+    if data['finished']=='false':
+        finished = False
+    else:
+        finished = True
+
+    with connection.cursor() as cursor:
+        num = cursor.execute("UPDATE helloWorld_task SET finished=%r WHERE id=%s", [finished, id])
+        if num==0:
+            return HttpResponse(json.dumps({"updated": "false"}), content_type="application/json")
+    
+    return HttpResponse(json.dumps({"updated": "true"}), content_type="application/json")

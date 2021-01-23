@@ -24,5 +24,6 @@ urlpatterns = [
     path('login/', login),
     path('addTask/', addTask),
     path('removeTask/', removeTask),
-    path('getTasks/', getTasks)
+    path('getTasks/', getTasks),
+    path('updateTask/', updateTask)
 ]
